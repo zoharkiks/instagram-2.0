@@ -8,7 +8,7 @@ import { Navbar } from "../components";
 
 const Home: NextPage = () => {
   return (
-    <div className="">
+    <div className="px-4">
       <Head>
         <title>Instagram 2.0</title>
         <link rel="icon" href="/favicon.ico" />
