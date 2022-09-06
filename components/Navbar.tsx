@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react";
 
 const Navbar = () => {
   return (
-    <div className=" bg-gray- mx-2 flex max-w-7xl items-center justify-between rounded-xl py-4 px-2 font-gilSemi shadow-xl md:px-6 xl:mx-auto sticky top-0 z-50  ">
+    <div className=" bg-gray- mx-2 flex max-w-7xl items-center justify-between rounded-xl py-4 px-2 font-gilSemi shadow-xl md:px-6 xl:mx-auto sticky top-0 z-50 bg-white  ">
       <div className=" relative h-14 w-14 md:hidden ">
         <Image src={images.logoVert.src} layout="fill" objectFit="contain" />
       </div>
