@@ -2,7 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-For Custom fonts @font-face {
+@layer components{
+  .navBtn{
+@apply hidden h-6 w-6 md:inline-flex cursor-pointer hover:scale-125 transition-all duration-150 ease-out
+  }
+}
+
+
+
+@font-face {
   font-family: "Gilroy-Regular";
   src: url("../public/fonts/Gilroy-Regular.ttf");
 }
