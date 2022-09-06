@@ -1,8 +1,10 @@
 import React from 'react'
+import { images } from "../constants";
 
 const Navbar = () => {
   return (
-    <div>I'm a Navbar</div>
+    <div>I'm a Navbar
+    </div>
   )
 }
 

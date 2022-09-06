@@ -12,12 +12,14 @@ module.exports = {
     //   'black':'#000000',
     // },
     extend: {
-      // Using custom fonts
-      // fontFamily: {
-      //   worldwide: ["WorldwideHeadline", "cursive"],
-      //   blooming: ["Blooming Elegant Sans", "cursive"],
-      //   poppins: ["Poppins", 'sans-serif']
-      // },
+      fontFamily: {
+       manrope: ["Manrope", "sans-serif"],
+       gilRegular: ["Gilroy-Regular", "sans-serif"],
+       gilMedium: ["Gilroy-Medium", "sans-serif"],  
+       gilSemi: ["Gilroy-SemiBold", "sans-serif"],  
+        gilBold: ["Gilroy-Bold", "sans-serif"],
+       
+      },
     },
   },
   plugins: [],

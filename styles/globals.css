@@ -2,14 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+For Custom fonts @font-face {
+  font-family: "Gilroy-Regular";
+  src: url("../public/fonts/Gilroy-Regular.ttf");
+}
 
-/* For Custom fonts */
-/* @font-face {
-    font-family: "WorldwideHeadline";
-    src: url("../public/fonts/WorldwideHeadline.ttf");
-  } */
+@font-face {
+  font-family: "Gilroy-Medium";
+  src: url("../public/fonts/Gilroy-Medium.ttf");
+}
 
-/* @font-face {
-    font-family: "WorldwideHeadline";
-    src: url("../public/fonts/WorldwideHeadline.ttf");
-  } */
+@font-face {
+  font-family: "Gilroy-SemiBold";
+  src: url("../public/fonts/Gilroy-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Gilroy-Bold";
+  src: url("../public/fonts/Gilroy-Bold.ttf");
+}
