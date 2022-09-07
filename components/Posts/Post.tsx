@@ -11,7 +11,7 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
           alt="profilePic"
         />
         <p className="flex-1 font-gilSemi">{userName}</p>
-        <Icon icon="bi:three-dots" />
+        <Icon className="btn h-6 w-6" icon="bi:three-dots" />
       </div>
 
       <img src={mainImg.src} className="w-full object-cover" alt="" />
@@ -41,9 +41,11 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
           name=""
           id=""
           placeholder="Add Comment"
-          className="flex-1 border-none outline-none focus:ring-0 text-sm font-manrope font-medium  placeholder-gray-400  "
+          className="flex-1 border-none font-manrope text-sm font-medium placeholder-gray-400 outline-none  focus:ring-0  "
         />
-        <button className="font-gilBold text-gray-400 text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600">Post</button>
+        <button className="bg-gradient-to-r from-red-500 via-pink-600 to-violet-400 bg-clip-text font-gilBold text-transparent">
+          Post
+        </button>
       </form>
     </div>
   );
