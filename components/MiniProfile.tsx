@@ -36,7 +36,7 @@ const MiniProfile = () => {
 <p className=" font-manrope text-sm font-medium text-gray-400">
         Suggestions For You
       </p>
-      <p className=" font-gilBold text-sm font-medium cursor-pointer ">
+      <p className=" font-gilBold text-sm font-medium cursor-pointer  textGradient">
         See All
       </p>   
 </div>

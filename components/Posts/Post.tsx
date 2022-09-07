@@ -43,7 +43,7 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
           placeholder="Add Comment"
           className="flex-1 border-none font-manrope text-sm font-medium placeholder-gray-400 outline-none  focus:ring-0  "
         />
-        <button className="bg-gradient-to-r from-red-500 via-pink-600 to-violet-400 bg-clip-text font-gilBold text-transparent">
+        <button className=" font-gilBold textGradient">
           Post
         </button>
       </form>
