@@ -10,6 +10,10 @@
   .gradient{
     @apply bg-gradient-to-r from-red-500 via-pink-500 to-violet-300
   }
+
+  .btn{
+    @apply h-8 w-8 cursor-pointer hover:scale-125 transition-all duration-150 ease-out
+  }
 }
 
 

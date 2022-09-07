@@ -9,7 +9,7 @@ const Posts = () => {
       userName: "zoharkiks",
       avatar: images.profile,
       mainImg: images.test,
-      caption: "Lets build insta",
+      caption: "Lets build insta and rock the world like crazy Lets build insta and rock the world like crazy Lets build insta and rock the world like crazyLets build insta and rock the world like crazy !!!!!",
     },
     {
       id: "123",
