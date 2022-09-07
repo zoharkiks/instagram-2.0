@@ -6,6 +6,10 @@
   .navBtn{
 @apply hidden h-6 w-6 md:inline-flex cursor-pointer hover:scale-125 transition-all duration-150 ease-out
   }
+
+  .gradient{
+    @apply bg-gradient-to-r from-red-500 via-pink-500 to-violet-300
+  }
 }
 
 

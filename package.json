@@ -6,9 +6,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@faker-js/faker": "^6.0.0",
     "next": "latest",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "tailwindcss-border-gradient-radius": "^3.0.1"
   },
   "devDependencies": {
     "@iconify/react": "^3.2.2",

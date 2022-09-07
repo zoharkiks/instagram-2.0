@@ -1,5 +1,5 @@
 // Import all containers here for easy exports
 import  Footer  from "./Footer";
-import  Hero  from "./Hero";
+import  Feed  from "./Feed";
 
-export { Footer, Hero}
+export { Footer, Feed}
