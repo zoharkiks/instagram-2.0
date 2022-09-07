@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stories } from '../components'
+import { Posts, Stories } from '../components'
 
 const Feed = () => {
   return (
@@ -7,6 +7,7 @@ const Feed = () => {
 
 <section className='col-span-2 '>
 <Stories/>
+<Posts/>
 </section>
 
 <section>

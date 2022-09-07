@@ -14,7 +14,7 @@ const Stories = () => {
   }, []);
 
   return (
-    <div className="flex space-x-4 p-10 mt-10 bg-white overflow-x-scroll shadow-xl rounded-xl scrollbar-thin scrollbar-thumb-gray-400 scrollbar-thumb-rounded-full scrollbar-track-rounded-full ">
+    <div className="flex space-x-4 py-10 px-6 mt-10 bg-white overflow-x-scroll shadow-xl rounded-xl scrollbar-thin scrollbar-thumb-gray-400 scrollbar-thumb-rounded-full scrollbar-track-rounded-full ">
       {data.map((profile) => (
         <Story
           key={profile.id}
