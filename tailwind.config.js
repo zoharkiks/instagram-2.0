@@ -24,7 +24,12 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'),
-    require('tailwindcss-border-gradient-radius')
+    require('tailwindcss-border-gradient-radius'),
+    require('tailwind-scrollbar'),
+    require('tailwind-scrollbar-hide')
 
   ],
+  variants: {
+    scrollbar: ['rounded']
+}
 }
