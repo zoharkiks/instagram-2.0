@@ -3,17 +3,20 @@ import React from "react";
 import { images } from "../constants";
 import { Icon } from "@iconify/react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const { data: session } = useSession();
 
+  const router = useRouter();
+
   return (
     <div className=" sticky top-0 z-50 flex max-w-6xl items-center justify-between rounded-b-2xl bg-white py-4 px-2 font-gilSemi shadow-xl md:py-2 md:px-6 xl:mx-auto   ">
-      <div className=" relative h-14 w-14 md:hidden ">
-        <Image src={images.logoVert.src} layout="fill" objectFit="contain" />
+      <div onClick={()=>router.push('/')} className=" relative h-14 w-14 md:hidden  cursor-pointer ">
+        <Image  src={images.logoVert.src} layout="fill" objectFit="contain" />
       </div>
 
-      <div className="relative hidden h-24 w-40 md:inline-grid ">
+      <div onClick={()=>router.push('/')} className="relative hidden h-24 w-40 md:inline-grid cursor-pointer ">
         <Image src={images.logoHorz.src} layout="fill" objectFit="contain" />
       </div>
 
@@ -49,7 +52,7 @@ const Navbar = () => {
             <Icon className="navBtn !inline-block " icon="fa:plus-square-o" />
 
             <img
-            onClick={signOut}
+              onClick={signOut}
               className="h-10 cursor-pointer rounded-full"
               src={session.user.image}
               alt="profile"
@@ -57,11 +60,11 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <Icon className="navBtn inline-grid" icon="uiw:home" />
+            <Icon onClick={()=>router.push('/')} className="navBtn inline-grid" icon="uiw:home" />
 
             <button
               onClick={signIn}
-              className="gradient rounded-full p-2 font-gilBold text-xs md:text-sm text-white"
+              className="gradient rounded-full p-2 font-gilBold text-xs text-white md:text-sm"
             >
               Sign In
             </button>

@@ -15,7 +15,6 @@ const Home: NextPage = () => {
       </Head>
 
       {/* Website Sections */}
-      <Navbar />
       <Feed />
       <Footer />
     </div>

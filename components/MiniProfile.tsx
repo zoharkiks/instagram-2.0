@@ -2,9 +2,11 @@ import { Icon } from "@iconify/react";
 import React, { useEffect, useState } from "react";
 import { images } from "../constants";
 import { faker } from "@faker-js/faker";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 const MiniProfile = () => {
+
+  // Get Fake Suggestions
   const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
@@ -13,21 +15,23 @@ const MiniProfile = () => {
       id: i,
     }));
     setSuggestions(suggestions);
-    console.log(suggestions);
   }, []);
+
+  // Use Google Session
+  const { data: session } = useSession();
 
   return (
     <div className=" mt-10 flex  flex-col rounded-2xl bg-white py-10 px-10 shadow-xl">
       <div className="flex items-center space-x-6">
         <img
           className="h-16 w-16 rounded-full"
-          src={images.profile.src}
+          src={session?.user?.image}
           alt=""
         />
         <div>
-          <h2 className="font-gilSemi">zoharkiks</h2>
+          <h2 className="font-gilSemi">{session?.user?.username}</h2>
           <span className=" font-manrope text-sm font-semibold  text-gray-500">
-            React.JS Developer
+            Welcome to Instagram
           </span>
         </div>
         <Icon onClick={signOut} className="btn" icon="charm:sign-out" />
