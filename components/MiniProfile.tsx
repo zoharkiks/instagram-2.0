@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react";
 import React, { useEffect, useState } from "react";
 import { images } from "../constants";
 import { faker } from "@faker-js/faker";
+import { signOut } from "next-auth/react";
 
 const MiniProfile = () => {
   const [suggestions, setSuggestions] = useState([]);
@@ -29,7 +30,7 @@ const MiniProfile = () => {
             React.JS Developer
           </span>
         </div>
-        <Icon className="btn" icon="charm:sign-out" />
+        <Icon onClick={signOut} className="btn" icon="charm:sign-out" />
       </div>
 
 <div className=" mt-10 flex items-center justify-between">

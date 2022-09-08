@@ -4,7 +4,7 @@ const Story = ({ img, username }) => {
   return (
     <div className="space-y-2">
       <img
-        className="h-14 w-14 transform cursor-pointer rounded-full border border-red-500 object-contain p-[1.5px] transition duration-200 hover:scale-110"
+        className="h-14 w-14 transform cursor-pointer rounded-full border-2 border-red-500 object-contain p-[1.5px] transition duration-200 hover:scale-110"
         src={img}
         alt="avatar"
       />
