@@ -1,31 +1,32 @@
 import React from "react";
 import { Icon } from "@iconify/react";
+import { useSession } from "next-auth/react";
 
 const Post = ({ id, userName, avatar, mainImg, caption }) => {
+  const { data: session } = useSession();
+
   return (
     <div className="mt-10 rounded-2xl  bg-white pb-4 shadow-xl">
       <div className="flex items-center justify-between space-x-4 p-4 ">
-        <img
-          className="h-12 w-12 rounded-full"
-          src={avatar.src}
-          alt="profilePic"
-        />
+        <img className="h-12 w-12 rounded-full" src={avatar} alt="profilePic" />
         <p className="flex-1 font-gilSemi">{userName}</p>
         <Icon className="btn h-6 w-6" icon="bi:three-dots" />
       </div>
 
-      <img src={mainImg.src} className="w-full object-cover" alt="" />
+      <img src={mainImg} className="w-full object-cover" alt="main-image" />
 
-      <div className="flex items-center justify-between p-4">
-        <div className="flex items-center space-x-4">
-          <Icon className="btn" icon="akar-icons:heart" />
-          <Icon className="btn" icon="eva:message-circle-outline" />
-          <Icon className="btn" icon="ion:paper-plane-outline" />
+      {session && (
+        <div className="flex items-center justify-between p-4">
+          <div className="flex items-center space-x-4">
+            <Icon className="btn" icon="akar-icons:heart" />
+            <Icon className="btn" icon="eva:message-circle-outline" />
+            <Icon className="btn" icon="ion:paper-plane-outline" />
+          </div>
+          <Icon className="btn" icon="lucide:bookmark-minus" />
         </div>
-        <Icon className="btn" icon="lucide:bookmark-minus" />
-      </div>
+      )}
 
-      <p className="truncate px-4 font-manrope text-sm font-medium">
+      <p className="truncate px-4 font-manrope text-sm font-medium mt-4">
         <span className="mr-1 font-gilBold text-lg">{userName} </span>
         {caption}
       </p>
@@ -34,19 +35,19 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
         Show More
       </span>
 
-      <form className="flex items-center px-4 pt-4" action="">
-        <Icon className="text-gray-400" icon="fluent:emoji-32-regular" />
-        <input
-          type="text"
-          name=""
-          id=""
-          placeholder="Add Comment"
-          className="flex-1 border-none font-manrope text-sm font-medium placeholder-gray-400 outline-none  focus:ring-0  "
-        />
-        <button className=" font-gilBold textGradient">
-          Post
-        </button>
-      </form>
+      {session && (
+        <form className="flex items-center px-4 pt-4" action="">
+          <Icon className="text-gray-400" icon="fluent:emoji-32-regular" />
+          <input
+            type="text"
+            name=""
+            id=""
+            placeholder="Add Comment"
+            className="flex-1 border-none font-manrope text-sm font-medium placeholder-gray-400 outline-none  focus:ring-0  "
+          />
+          <button className=" textGradient font-gilBold">Post</button>
+        </form>
+      )}
     </div>
   );
 };
