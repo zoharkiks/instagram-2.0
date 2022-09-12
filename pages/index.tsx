@@ -20,7 +20,6 @@ const Home: NextPage = () => {
       
       {/* Website Sections */}
       <Feed />
-      <Footer />
     </div>
   );
 };
