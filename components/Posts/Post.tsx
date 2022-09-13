@@ -4,10 +4,13 @@ import { useSession } from "next-auth/react";
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   onSnapshot,
   orderBy,
   query,
   serverTimestamp,
+  setDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import Moment from "react-moment";
@@ -16,6 +19,8 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
   const { data: session } = useSession();
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
+  const [likes, setLikes] = useState([]);
+  const [hasLiked, setHasLiked] = useState(false);
 
   useEffect(
     () =>
@@ -29,10 +34,36 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
         }
       ),
 
-    [db]
+    [db, id]
   );
 
-  console.log(comments);
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "posts", id, "likes"), (snapshot) => {
+        setLikes(snapshot.docs);
+      }),
+
+    [db, id]
+  );
+
+  useEffect(
+    () =>
+      setHasLiked(
+        likes.findIndex((like) => like.id === session?.user?.uid) !== -1
+      ),
+    [likes]
+  );
+
+  const likePost = async () => {
+    if (hasLiked) {
+      await deleteDoc(doc(db, "posts", id, "likes", session.user.uid));
+    } else {
+      await setDoc(doc(db, "posts", id, "likes", session.user.uid), {
+        username: session.user.username,
+        userImage: session.user.image,
+      });
+    }
+  };
 
   const sendComment = async (e) => {
     e.preventDefault();
@@ -61,7 +92,19 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
       {session && (
         <div className="flex items-center justify-between p-4">
           <div className="flex items-center space-x-4">
-            <Icon className="btn" icon="akar-icons:heart" />
+            {hasLiked ? (
+              <Icon
+                icon="ant-design:heart-filled"
+                onClick={likePost}
+                className="btn text-red-500 hover:text-red-500"
+              />
+            ) : (
+              <Icon
+                onClick={likePost}
+                className="btn hover:text-red-500"
+                icon="akar-icons:heart"
+              />
+            )}
             <Icon className="btn" icon="eva:message-circle-outline" />
             <Icon className="btn" icon="ion:paper-plane-outline" />
           </div>
@@ -69,40 +112,74 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
         </div>
       )}
 
+      {likes.length === 1 ? (
+        <div className="ml-4 flex items-center space-x-2 ">
+          <img
+            className="h-8 rounded-full"
+            src={likes[0].data().userImage}
+            alt="img"
+          />
+          <span className="  font-gilSemi text-sm">
+            Liked by {likes[0]?.data().username}
+          </span>
+        </div>
+      ) : likes.length === 2 ? (
+        <div className="ml-4 flex items-center space-x-2 ">
+          <img
+            className="h-8 rounded-full"
+            src={likes[0].data().userImage}
+            alt="img"
+          />
+
+          <span className="font-gilSemi text-sm">
+            Liked by {likes[0]?.data().username} and 1 other
+          </span>
+        </div>
+      ) : likes.length > 2 ? (
+        <div className="ml-4 flex items-center space-x-2 ">
+          <img
+            className="h-8 rounded-full"
+            src={likes[0].data().userImage}
+            alt="img"
+          />
+          <span className="font-gilSemi text-sm">
+            Liked by {likes[0]?.data().username} and {likes.length - 1} others{" "}
+          </span>
+        </div>
+      ) : null}
+
       <p className="mt-4 truncate px-4 font-manrope text-sm font-medium">
         <span className="mr-1 font-gilBold text-lg">{userName} </span>
         {caption}
       </p>
 
-      <span className="cursor-pointer px-4 font-gilSemi text-sm ">
-        ...More
-      </span>
+      <span className="cursor-pointer px-4 font-gilSemi text-sm ">...More</span>
 
       {/* Displaying Comments */}
       {comments.length > 0 ? (
-        <div className=" px-6 py-2 h-20 space-y-3 overflow-y-scroll scrollbar-thumb-black scrollbar-thin">
+        <div className=" h-20 space-y-3 overflow-y-scroll px-6 py-2 scrollbar-thin scrollbar-thumb-black">
           {comments.map((comment) => (
-            <div className=" flex items-center space-x-2 mt-2 ">
+            <div
+              key={comment.id}
+              className=" mt-2 flex items-center space-x-2 "
+            >
               <img
                 className="h-7 rounded-full"
                 src={comment.data().userImage}
                 alt="user-img"
               />
               <p className="flex-1 text-sm">
-                <span className="font-gilBold">
-                  {comment.data().username}
-                </span>{" "}
+                <span className="font-gilBold">{comment.data().username}</span>{" "}
                 {comment.data().comment}
               </p>
               <Moment fromNow className="pr-5 text-xs">
-{comment.data().timestamp?.toDate()}
-
+                {comment.data().timestamp?.toDate()}
               </Moment>
             </div>
           ))}
         </div>
-      ) :(
-        <h1 className="m-4 text-gray-60">No Comments Yet</h1>
+      ) : (
+        <h1 className="text-gray-60 m-4">No Comments Yet</h1>
       )}
 
       {session && (
