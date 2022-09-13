@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { useSession } from "next-auth/react";
-import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+  serverTimestamp,
+} from "firebase/firestore";
 import { db } from "../../firebase";
 
 const Post = ({ id, userName, avatar, mainImg, caption }) => {
@@ -12,7 +19,10 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
   useEffect(
     () =>
       onSnapshot(
-        query(collection(db, "posts",id,"comments"), orderBy("timestamp", "desc")),
+        query(
+          collection(db, "posts", id, "comments"),
+          orderBy("timestamp", "desc")
+        ),
         (snapshot) => {
           setComments(snapshot.docs);
         }
@@ -22,24 +32,19 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
   );
 
   console.log(comments);
-  
 
   const sendComment = async (e) => {
     e.preventDefault();
 
     const commentToSend = comment;
     setComment("");
-   
 
-
-    await addDoc(collection(db,"posts",id,"comments"),{
-      comment : commentToSend,
-      username:session.user.username,
-      userImage:session.user.image,
-      timestamp:serverTimestamp()
-    })
-
-    
+    await addDoc(collection(db, "posts", id, "comments"), {
+      comment: commentToSend,
+      username: session.user.username,
+      userImage: session.user.image,
+      timestamp: serverTimestamp(),
+    });
   };
 
   return (
@@ -69,8 +74,31 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
       </p>
 
       <span className="cursor-pointer px-4 font-gilSemi text-sm ">
-        Show More
+        ...More
       </span>
+
+      {/* Displaying Comments */}
+      {comments.length > 0 ? (
+        <div className=" px-6 py-2 h-20 space-y-3 overflow-y-scroll scrollbar-thumb-black scrollbar-thin">
+          {comments.map((comment) => (
+            <div className=" flex items-center space-x-2 mt-2 ">
+              <img
+                className="h-7 rounded-full"
+                src={comment.data().userImage}
+                alt="user-img"
+              />
+              <p className="flex-1 text-sm">
+                <span className="font-gilBold">
+                  {comment.data().username}
+                </span>{" "}
+                {comment.data().comment}
+              </p>
+            </div>
+          ))}
+        </div>
+      ) :(
+        <h1 className="m-4 text-gray-60">No Comments Yet</h1>
+      )}
 
       {session && (
         <form className="flex items-center px-4 pt-4" action="">
@@ -79,7 +107,6 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
             type="text"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-          
             placeholder="Add Comment"
             className="flex-1 border-none font-manrope text-sm font-medium placeholder-gray-400 outline-none  focus:ring-0  "
           />
