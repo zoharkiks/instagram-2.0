@@ -10,6 +10,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { db } from "../../firebase";
+import Moment from "react-moment";
 
 const Post = ({ id, userName, avatar, mainImg, caption }) => {
   const { data: session } = useSession();
@@ -93,6 +94,10 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
                 </span>{" "}
                 {comment.data().comment}
               </p>
+              <Moment fromNow className="pr-5 text-xs">
+{comment.data().timestamp?.toDate()}
+
+              </Moment>
             </div>
           ))}
         </div>
