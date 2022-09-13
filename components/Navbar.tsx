@@ -14,8 +14,7 @@ const Navbar = () => {
 const [open, setOpen] = useRecoilState(modalState)
 
   return (
-      // FIXME - Remove White Background bug
-    <div className=" sticky top-0 z-50 flex max-w-6xl items-center justify-between rounded-b-2xl bg-white py-4 px-2 font-gilSemi shadow-xl md:py-2 md:px-6 xl:mx-auto   ">
+    <div className=" sticky top-0 z-50   flex max-w-6xl items-center justify-between rounded-b-2xl bg-white py-4 px-2 font-gilSemi shadow-xl md:py-2 md:px-6 lg:mx-auto   ">
       <div onClick={()=>router.push('/')} className=" relative h-14 w-14 md:hidden  cursor-pointer ">
         <Image  src={images.logoVert.src} layout="fill" objectFit="contain" />
       </div>

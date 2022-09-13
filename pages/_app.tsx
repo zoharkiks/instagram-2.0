@@ -10,7 +10,6 @@ function MyApp({ Component, pageProps:{session,...pageProps} }: AppProps) {
   return(
     <SessionProvider session={session}>
       <RecoilRoot>
-      <Navbar/>
     <Component {...pageProps} />
     </RecoilRoot>
     </SessionProvider>
