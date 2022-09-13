@@ -84,7 +84,7 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
       <div className="flex items-center justify-between space-x-4 p-4 ">
         <img className="h-12 w-12 rounded-full" src={avatar} alt="profilePic" />
         <p className="flex-1 font-gilSemi">{userName}</p>
-        <Icon className="btn h-6 w-6" icon="bi:three-dots" />
+        <Icon className={`btn h-6 w-6 ${!session && 'hidden'}` } icon="bi:three-dots" />
       </div>
 
       <img src={mainImg} className="w-full object-cover" alt="main-image" />
