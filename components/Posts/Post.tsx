@@ -112,7 +112,10 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
         </div>
       )}
 
-      {likes.length === 1 ? (
+<div className=" mt-4
+">
+
+{likes.length === 1 ? (
         <div className="ml-4 flex items-center space-x-2 ">
           <img
             className="h-8 rounded-full"
@@ -147,6 +150,9 @@ const Post = ({ id, userName, avatar, mainImg, caption }) => {
           </span>
         </div>
       ) : null}
+
+</div>
+    
 
       <p className="mt-4 truncate px-4 font-manrope text-sm font-medium">
         <span className="mr-1 font-gilBold text-lg">{userName} </span>
