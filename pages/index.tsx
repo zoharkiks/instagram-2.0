@@ -9,7 +9,7 @@ import { Modal, Navbar } from "../components";
 const Home: NextPage = () => {
   return (
     // FIXME Hide scrollbar
-    <div className=" bg-gray-50 px-2 scrollbar-hide">
+    <div className=" bg-gray-50 px-2  overflow-y-visible scrollbar-hide">
       <Head>
         <title>Instagram 2.0</title>
         <link rel="icon" href="/favicon.ico" />
