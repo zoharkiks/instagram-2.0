@@ -3,7 +3,7 @@
 
 
 <p align="center">
-<img src="https://i.ibb.co/420dJZV/HBOMax-Clone.png" alt="insta-clone" height="55%" width="55%" >
+<img src="https://i.ibb.co/yWzFPR6/Insta2-0.png" alt="Insta2-0" height="55%" width="55%" >
 </p>
 <br>
 
