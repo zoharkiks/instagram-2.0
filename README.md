@@ -1,5 +1,5 @@
 <h1 align="center">Instagram Clone 2.0</h3> 
-<p> <a href="https://instaclone-zohar.vercel.app/"><h3 align="center" >Live Site</h3></a>
+<a href="https://instaclone-zohar.vercel.app/"><p align="center" >Live Site</p>
 
 
 <p align="center">
